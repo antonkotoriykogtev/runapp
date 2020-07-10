@@ -1,0 +1,278 @@
+<html>
+
+<head>
+  <title>ForRun</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    *{
+        font-family: 'PT Sans Caption', sans-serif;
+
+    }
+
+    #MainCaption{
+        font-family: 'PT Sans Caption', sans-serif;
+        font-weight: 700;
+    }
+    #togglenav{
+        font-size:x-large;
+        border-color: #006dcc;
+        border-radius:15px
+    }
+    #links{
+        padding: 5px 10px 7px;
+        background-color:rgb(235,96,82);
+        color:white;
+        border-radius: 20px;
+        transition: 0.3s;
+        cursor:pointer;
+        -webkit-box-shadow: 0px 5px 10px -1px rgba(235,108,108,1);
+    }
+    #links:hover{
+        cursor:pointer;
+        -webkit-box-shadow:  0px 0px 10px 5px rgba(235,108,108,1);
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <form method="POST">
+    <div class=" row d-flex justify-content-center">
+
+        <div class="col-sm text-center" style="margin-top: 10px;">
+            Your city:
+        </div>
+        <div class="col-sm" style="margin-top: 10px;">
+            <input placeholder="your city" type="text" name="city" style="border-radius: 15pt" class="form-control">
+        </div>
+        <div class="btn-group" style="margin-top: 10px; border-radius:10pt">
+              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px;">
+                country
+              </button>
+              <div class="dropdown-menu">
+                    <a class="dropdown-item" name="country">ru</a>
+                    <a class="dropdown-item" name="country">uk</a>
+                    <a class="dropdown-item" name="country">us</a>
+                    <a class="dropdown-item" name="country">es</a>
+                    <a class="dropdown-item" name="country">it</a>
+                    <a class="dropdown-item" name="country">hr</a>
+              </div>
+            </div>
+        <div class="col-sm" style="margin-top: 10px;">
+        <button type="submit" class="btn btn-outline-success" style="border-radius: 15pt">press</button>
+        </form>
+        </div>
+
+    </div>
+    </form>
+
+<div class="row d-flex justify-content-center">
+            <div class="col-10" style="margin:20px;">
+                <h1 id="MainCaption" class="text-center">Weather for run</h1>
+            </div>
+            <div class="col-8 col-md-12 col-lg-9" style="margin-top:-30px;">
+                <nav class="navbar navbar-light navbar-expand-md">
+                    <div class="container-fluid"> <button id="togglenav" class="btn btn-primary btn-lg btn-block navbar-toggler" data-toggle="collapse" data-target="#navcol-1">Дополнительно<span class="sr-only">Toggle navigation</span></button>
+                        <div class="collapse navbar-collapse" id="navcol-1">
+                            <ul class="nav navbar-nav mx-auto">
+
+                                <li class="nav-item text-center" role="presentation"><a class="nav-link text-info active"data-toggle="modal" data-target="#myModal" style="border-radius: 15px">
+                                    <h3 id="links">connect</h3>
+                                </a>
+                                    <div class="modal fade" id="myModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="border-radius: 15pt;">
+
+
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Want to make site better?</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+
+                                                <div class="modal-body text-left">
+                                                    <a class="card-link float-start" href="https://t.me/Usvername"><h4>telegram</h4></a>
+                                                    <a class="float-start"><h4>Gmail: akogtev02@gmail.com</h4></a>
+                                                </div>
+
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-danger" style="border-radius:15pt;" data-dismiss="modal">Закрыть</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                </div>
+
+</div>
+<div class="container">
+  <div class="row">
+    <div class="card col-sm" style="border: 4px solid
+    {% if weather.tempNow >15 and weather.humidityNow < 85 %}
+      #36cc1b
+    {% elif weather.tempNow <14 and weather.humidityNow >86 %}
+      #ec2626
+    {% else %}
+      #e87633
+    {% endif %}
+    ; border-radius: 20pt;  margin: 3px 3px 3px 3px;">
+        <div class="card-body">
+            <h4 class="card-title">right now weather is
+              {% if weather.tempNow>15 and weather.humidityNow< 85 %}
+                awesome
+              {% elif weather.tempNow< 14 and weather.humidityNow>86 %}
+                bad
+              {% else  %}
+                ok
+              {% endif %}
+
+            </h4>
+            <p class="card-text">temerature is {{weather.tempNow|round|int  }}</p>
+            <p class="card-text">humidity is {{weather.humidityNow}}</p>
+            <p class="card-text">there might be {{weather.descriptionNow}} </p>
+        </div>
+    </div>
+
+    <div class="card col-sm" style=" border: 4px solid
+    {% if weather.temp3 >15 and weather.humidity3 < 85 %}
+      #36cc1b
+    {% elif weather.temp3 <14 and weather.humidity3 >86 %}
+      #ec2626
+      {% else %}
+      #e87633
+      {% endif %}
+    ; border-radius: 20pt; margin: 3px 3px 3px 3px; ">
+        <div class="card-body">
+            <h4 class="card-title">at
+              {% if hour+3>24 %}
+                {{hour+3-24}}
+                {% else %}
+                {{hour}}
+                {% endif %}
+              o'clock it will be
+              {% if weather.temp3>15 and weather.humidity3< 85 %}
+                awesome
+              {% elif weather.temp3< 14 and weather.humidity3>86 %}
+                bad
+              {% else  %}
+                ok
+              {% endif %}
+            </h4>
+            <p class="card-text">temerature is {{weather.temp3|round|int  }}</p>
+            <p class="card-text">humidity is {{weather.humidity3}}</p>
+            <p class="card-text">there might be {{weather.description3}}</p>
+        </div>
+    </div>
+
+    <div class="card col-sm" style=" border: 4px solid
+    {% if weather.temp6 >15 and weather.humidity6 < 85 %}
+      #36cc1b
+    {% elif weather.temp6 <14 and weather.humidity6 >86 %}
+      #ec2626
+      {% else %}
+      #e87633
+      {% endif %}
+    ; border-radius: 20pt; margin: 3px 3px 3px 3px; ">
+        <div class="card-body">
+            <h4 class="card-title">at
+              {% if hour+6>24 %}
+                {{hour+6-24}}
+                {% else %}
+                {{hour}}
+                {% endif %}
+              o'clock it will be
+              {% if weather.temp6>15 and weather.humidity6< 85 %}
+                awesome
+
+              {% elif weather.temp6< 14 and weather.humidity6>86 %}
+                bad
+              {% else  %}
+                ok
+              {% endif %}
+            </h4>
+            <p class="card-text">temerature is {{ weather.temp6|round|int  }}</p>
+            <p class="card-text">humidity is {{weather.humidity6}}</p>
+            <p class="card-text">It's {{weather.description6}}</p>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="card col" style="border: 4px solid
+    {% if weather.temp9 >15 and weather.humidity9 < 85 %}
+      #36cc1b
+
+    {% elif weather.temp9 <14 and weather.humidity9 >86 %}
+      #ec2626
+      {% else %}
+      #e87633
+      {% endif %}
+    ; border-radius: 20pt; margin: 3px 3px 3px 3px; ">
+        <div class="card-body">
+            <h4 class="card-title">at
+              {% if hour+9>24 %}
+                {{hour+9-24}}
+                {% else %}
+                {{hour}}
+                {% endif %}
+              o'clock it will be
+              {% if weather.temp9>15 and weather.humidity9< 85 %}
+                awesome
+
+              {% elif weather.temp9< 14 and weather.humidity9>86 %}
+                bad
+              {% else  %}
+                ok
+              {% endif %}
+            </h4>
+            <p class="card-text">temerature is {{weather.temp9|round|int  }}</p>
+            <p class="card-text">humidity is {{weather.humidity9}}</p>
+            <p class="card-text">there is {{weather.description9}}</p>
+        </div>
+    </div>
+
+    <div class="card col" style=" border: 4px solid
+    {% if weather.temp24 >15 and weather.humidity24 < 85 %}
+      #36cc1b
+
+    {% elif weather.temp24 <14 and weather.humidity24 >86 %}
+      #ec2626
+      {% else %}
+      #e87633
+      {% endif %}
+    ; border-radius: 20pt; margin: 3px 3px 3px 3px;">
+        <div class="card-body">
+            <h4 class="card-title"> in 24 hours it will be
+              {% if weather.temp24 >15 and weather.humidity24 < 85 %}
+                awesome
+
+              {% elif weather.temp24 < 14 and weather.humidity24 >86 %}
+                bad
+              {% else  %}
+                ok
+              {% endif %}
+            </h4>
+            <p class="card-text">temerature is {{weather.temp24|round|int  }}</p>
+            <p class="card-text">humidity is {{weather.humidity24}}</p>
+            <p class="card-text">there is {{weather.description24}}</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
